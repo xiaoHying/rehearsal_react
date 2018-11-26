@@ -1,0 +1,28 @@
+{
+  "presets": [
+    ["env", {
+      "targets": { "node": 7 },
+      "useBuiltIns": true
+    }],
+    "stage-0",
+    "react",
+    "es2015"
+  ],
+  "plugins": [
+    "add-module-exports",
+    ["import", { "libraryName": "antd", "libraryDirectory": "es", "style": false }]
+  ],
+  "env": {
+    "production": {
+      "presets": ["react-optimize"]},
+    "development": {
+      "plugins": [
+        "transform-class-properties",
+        "transform-es2015-classes",
+        ["flow-runtime", {
+          "assert": true,
+          "annotate": true
+        }]]
+    }
+  }
+}

@@ -1,17 +1,22 @@
 const webpack = require("webpack");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require("path");
 
 module.exports = {
     devtool:"source-map",
     mode:"production",
-    entry:"./app/index",
+    entry:"./app/index.js",
     output:{
         path:path.join(__dirname, "app/dist"),
-        filename:"renderer.prod.js",
+        filename:"boundle.js",
         publicPath:"./dist/",
     },
     resolve: {
         extensions: ['*', '.js', '.jsx', '.less', '.scss', '.css'], //后缀名自动补全
+        modules: [path.join(__dirname, 'app'), 'node_modules'],
+        alias:{
+            '@': path.join(__dirname, 'app'),
+        }
     },
     module:{
         rules:[{
@@ -28,9 +33,11 @@ module.exports = {
             }]
         },{
             test:/\.html$/,
-            use:["htmllint-loader","html-loader",]
+            exclude:/node_modules/,
+            use:["htmllint-loader","html-loader"]
         },{
             test:/\.css$/,
+            exclude:/node_modules/,
             use:[{
                 loader:"css-loader",
                 options:{
@@ -41,6 +48,7 @@ module.exports = {
             }]
         },{
             test:/\.(scss|sass)$/,
+            exclude:/node_modules/,
             use:[{
                 loader: "css-loader",
                 options: {
@@ -53,6 +61,7 @@ module.exports = {
             }],
         },{
             test:/\.(png|jpg|gif|svg)$/i,
+            exclude:/node_modules/,
             use:[{
                 loader:"url-loader",
                 options:{
@@ -61,6 +70,7 @@ module.exports = {
             }]
         },{
             test:/\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+            exclude:/node_modules/,
             use:[{
                 loader:"url-loader",
                 options:{
@@ -71,7 +81,7 @@ module.exports = {
     },
     devServer:{
         proxy:{
-            // '/api':"http://localhost:3000"
+            '/api':"http://localhost:3000"
         },
         contentBase:path.join(__dirname,"app"),
         compress:true,
@@ -80,9 +90,14 @@ module.exports = {
         https:false,
         noInfo:true,
         inline:true,
+        host:"localhost",
         port:9000
     },
     plugins:[
         new webpack.HotModuleReplacementPlugin(),
+        new HtmlWebpackPlugin({
+            template: path.resolve(__dirname, 'app/app.html'),
+            inject: true
+        })
     ]
 }

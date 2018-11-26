@@ -1,17 +1,18 @@
 const webpack = require("webpack");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require("path");
 
 module.exports = {
     devtool:"source-map",
     mode:"production",
-    entry:"./app/index",
+    entry:"./app/index.js",
     output:{
         path:path.join(__dirname, "app/dist"),
-        filename:"renderer.prod.js",
+        filename:"boundle.js",
         publicPath:"./dist/",
     },
     resolve: {
-        extensions: ['', '.js', '.jsx', '.less', '.scss', '.css'], //后缀名自动补全
+        extensions: ['*', '.js', '.jsx', '.less', '.scss', '.css'], //后缀名自动补全
     },
     module:{
         rules:[{
@@ -23,14 +24,16 @@ module.exports = {
             use:[{
                 loader:"babel-loader",
                 options:{
-                    presets:["es2015","react"]
+                    presets:["es2017","react"]
                 },
             }]
         },{
             test:/\.html$/,
-            use:["htmllint-loader","html-loader",]
+            exclude:/node_modules/,
+            use:["htmllint-loader","html-loader"]
         },{
             test:/\.css$/,
+            exclude:/node_modules/,
             use:[{
                 loader:"css-loader",
                 options:{
@@ -41,6 +44,7 @@ module.exports = {
             }]
         },{
             test:/\.(scss|sass)$/,
+            exclude:/node_modules/,
             use:[{
                 loader: "css-loader",
                 options: {
@@ -53,6 +57,7 @@ module.exports = {
             }],
         },{
             test:/\.(png|jpg|gif|svg)$/i,
+            exclude:/node_modules/,
             use:[{
                 loader:"url-loader",
                 options:{
@@ -61,6 +66,7 @@ module.exports = {
             }]
         },{
             test:/\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+            exclude:/node_modules/,
             use:[{
                 loader:"url-loader",
                 options:{
@@ -71,18 +77,23 @@ module.exports = {
     },
     devServer:{
         proxy:{
-            '/api':"http://localhost:3000"
+            // '/api':"http://localhost:3000"
         },
-        contentBase:path.join(__dirname,"public"),
+        contentBase:path.join(__dirname,"app"),
         compress:true,
         historyApiFallback:true,
         hot:true,
         https:false,
         noInfo:true,
         inline:true,
+        host:"localhost",
         port:9000
     },
     plugins:[
-        // new webpack.HotModuleReplacementPlugin(),
+        new webpack.HotModuleReplacementPlugin(),
+        new HtmlWebpackPlugin({
+            template: path.resolve(__dirname, './app/app.html'),
+            inject: true
+        })
     ]
 }

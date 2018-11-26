@@ -2,7 +2,7 @@
 import * as React from 'react';
 
 
-class index extends React.Component {
+class Index extends React.Component {
     constructor(props) {
         super(props);
         this.state = {};
@@ -15,4 +15,4 @@ class index extends React.Component {
     }
 }
 
-export default index;
+export default Index;
