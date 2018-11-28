@@ -7,12 +7,16 @@ module.exports = {
     mode:"production",
     entry:"./app/index.js",
     output:{
-        path:path.join(__dirname, "app/dist"),
+        path:path.join(__dirname, "./app/dist"),
         filename:"boundle.js",
-        publicPath:"./dist/",
+        publicPath:"./app/static",
     },
     resolve: {
         extensions: ['*', '.js', '.jsx', '.less', '.scss', '.css'], //后缀名自动补全
+        modules: [path.join(__dirname, 'app'), 'node_modules'],
+        alias:{
+            '@': path.join(__dirname, 'app'),
+        }
     },
     module:{
         rules:[{
@@ -24,7 +28,7 @@ module.exports = {
             use:[{
                 loader:"babel-loader",
                 options:{
-                    presets:["es2017","react"]
+                    presets:["es2015","react"]
                 },
             }]
         },{
@@ -87,13 +91,14 @@ module.exports = {
         noInfo:true,
         inline:true,
         host:"localhost",
-        port:9000
+        port:3030
     },
     plugins:[
         new webpack.HotModuleReplacementPlugin(),
         new HtmlWebpackPlugin({
-            template: path.resolve(__dirname, './app/app.html'),
-            inject: true
+            template: path.resolve(__dirname, 'app/app.html'),
+            inject: true,
+            // filename: "./app/app.html"
         })
     ]
 }

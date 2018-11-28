@@ -1,6 +1,22 @@
-// import React from 'react';
-// import { render } from 'react-dom';
-// import Index from "./components/index.jsx";
-console.log(123456);
+import React from 'react';
+import { render } from 'react-dom';
+import {AppContainer} from 'react-hot-loader'
+import Index from "./components/index.jsx";
 
-// render(<Index />,document.getElementById("root"));
+if(module.hot){
+    module.hot.accept(() => {
+        render(
+            <AppContainer>
+                <Index />
+            </AppContainer>,
+            document.getElementById("root")
+        );
+    } );
+}
+
+render(
+    <AppContainer>
+        <Index />
+    </AppContainer>,
+    document.getElementById("root")
+);
