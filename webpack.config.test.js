@@ -7,7 +7,7 @@ const badeConfig = require("./webpack.config.base.js");
 
 const ROOT_PATH = path.resolve(__dirname);
 const SRC_PATH = path.resolve(ROOT_PATH,"app");
-const prodConfig = merge(badeConfig, {
+const testConfig = merge(badeConfig, {
     devtool:"source-map",
     optimization: {
         minimizer: [
@@ -29,12 +29,6 @@ const prodConfig = merge(badeConfig, {
         new webpack.HotModuleReplacementPlugin(),
         new webpack.optimize.OccurrenceOrderPlugin(),
         new webpack.NoEmitOnErrorsPlugin(),
-        new webpack.DefinePlugin({
-            'process.env.NODE_ENV': '"production"'
-        }),
-        // new webpack.optimize.UglifyJsPlugin({
-        //     sourceMap: true,
-        // }),
         new HtmlWebpackPlugin({
             title:"做一件自己喜欢做的事",
             template: path.resolve(SRC_PATH, 'app.html'),
@@ -50,6 +44,12 @@ const prodConfig = merge(badeConfig, {
                 removeAttributeQuotes: true
             }
         }),
+        // new webpack.optimize.UglifyJsPlugin({
+        //     sourceMap: true,
+        // }),
+        new webpack.DefinePlugin({
+            'process.env.NODE_ENV': '"test"'
+        }),
     ]
 });
-module.exports = prodConfig;
+module.exports = testConfig;

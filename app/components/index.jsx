@@ -5,9 +5,12 @@ class Index extends React.Component {
         super(props);
         this.state = {};
     }
+    componentDidMount(){
+        console.log("componentDidMount");
+    }
 
     render() {
-        return (<div>我是谁，我在哪，我从哪里来，要到哪里去</div>)
+        return (<div>123456</div>)
     }
 }
 

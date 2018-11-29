@@ -5,8 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --mode production --config webpack.config.base.js",
-    "dev": "node dev-server"
+    "dev": "node dev-server",
+    "build:dev":"webpack --progress --config webpack.config.dev.js",
+    "build:test":"webpack --progress --config webpack.config.test.js",
+    "build": "webpack --progress --config webpack.config.prod.js"
   },
   "author": "",
   "license": "ISC",
@@ -48,11 +50,13 @@
     "redux-saga": "^0.16.2",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
+    "uglifyjs-webpack-plugin": "^2.0.1",
     "url-loader": "^1.1.2",
     "webpack": "^4.26.0",
     "webpack-cli": "^3.1.2",
     "webpack-dev-middleware": "^3.4.0",
-    "webpack-hot-middleware": "^2.24.3"
+    "webpack-hot-middleware": "^2.24.3",
+    "webpack-merge": "^4.1.4"
   },
   "dependencies": {
     "antd": "^3.10.9",

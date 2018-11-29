@@ -3,7 +3,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require("path");
 
 module.exports = {
-    devtool:"source-map",
     mode:"production",
     entry:{
         index:[
@@ -91,16 +90,5 @@ module.exports = {
                 }
             }]
         }]
-    },
-    plugins:[
-        new webpack.HotModuleReplacementPlugin(),
-        new webpack.optimize.OccurrenceOrderPlugin(),
-        new webpack.NoEmitOnErrorsPlugin(),
-        new HtmlWebpackPlugin({
-            template: path.resolve(__dirname, 'app/app.html'),
-            inject: true,
-            filename: "./index.html",
-            favicon:"./favicon.ico",
-        }),
-    ]
+    }
 }
