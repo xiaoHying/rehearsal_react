@@ -32,9 +32,6 @@ const prodConfig = merge(badeConfig, {
         new webpack.DefinePlugin({
             'process.env.NODE_ENV': '"production"'
         }),
-        // new webpack.optimize.UglifyJsPlugin({
-        //     sourceMap: true,
-        // }),
         new HtmlWebpackPlugin({
             title:"做一件自己喜欢做的事",
             template: path.resolve(SRC_PATH, 'app.html'),

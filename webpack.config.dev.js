@@ -12,11 +12,6 @@ const devConfig = merge(badeConfig, {
         new webpack.HotModuleReplacementPlugin(),
         new webpack.optimize.OccurrenceOrderPlugin(),
         new webpack.NoEmitOnErrorsPlugin(),
-        // new webpack.optimize.CommonsChunkPlugin({
-        //     name: ['vendor'],
-        //     minChunks: Infinity,
-        //     filename: 'common.js'
-        // }),
         new HtmlWebpackPlugin({
             title:"做一件自己喜欢做的事",
             template: path.resolve(SRC_PATH, 'app.html'),
