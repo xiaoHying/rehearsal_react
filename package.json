@@ -6,13 +6,14 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "node dev-server",
-    "build:dev":"webpack --progress --config webpack.config.dev.js",
-    "build:test":"webpack --progress --config webpack.config.test.js",
+    "build:dev": "webpack --progress --config webpack.config.dev.js",
+    "build:test": "webpack --progress --config webpack.config.test.js",
     "build": "webpack --progress --config webpack.config.prod.js"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "axios": "^0.18.0",
     "babel-core": "^6.26.3",
     "babel-eslint": "^7.2.3",
     "babel-loader": "^7.1.5",
