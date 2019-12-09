@@ -1,6 +1,6 @@
 // @flow
 import * as React from 'react';
-import './style.scss';
+import "./style.scss";
 
 
 class TitleSlogin extends React.Component {

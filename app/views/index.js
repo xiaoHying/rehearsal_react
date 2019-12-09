@@ -1,8 +1,8 @@
 // @flow
 import * as React from 'react';
-import RsideNav from '@/components/rsideNav';
-import TitleSlogin from '@/components/titleslogin';
-import Animation from '@/components/animation';
+import RsideNav from "@/components/rsideNav";
+import TitleSlogin from "@/components/titleslogin";
+import Animation from "@/components/animation";
 import { Switch, Route } from 'react-router-dom';
 
 
