@@ -58,16 +58,15 @@ module.exports = {
         },{
             test:/\.(scss|sass)$/,
             exclude:/node_modules/,
-            use:[{
+            use:[
+                "style-loader",
+                {
                 loader: "css-loader",
                 options: {
                     minimize: true,
                 },
-            },{
-                loader:"sass-loader"
-            },{
-                loader:"style-loader"
-            }],
+            },
+            "sass-loader"],
         },{
             test:/\.(png|jpg|gif|svg)$/i,
             exclude:/node_modules/,
