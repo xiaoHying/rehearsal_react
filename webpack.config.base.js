@@ -50,12 +50,10 @@ module.exports = {
             test:/\.css$/,
             exclude:/node_modules/,
             use:[{
-                loader:"css-loader",
+                loader:"style-loader!css-loader",
                 options:{
                     minimize:true,
                 }
-            },{
-                loader:"style-loader",
             }]
         },{
             test:/\.(scss|sass)$/,

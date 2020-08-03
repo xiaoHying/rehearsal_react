@@ -43,4 +43,6 @@ app.get('/', function (req, res) {
     res.sendFile(__dirname + '/app/app.html');
 });
 
-app.listen(port);
+app.listen(port, () => {
+    console.log(`localhost:${port}`);
+});

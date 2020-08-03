@@ -1,13 +1,13 @@
 import React from 'react';
 import { render } from 'react-dom';
 import {AppContainer} from 'react-hot-loader'
-import Index from "./components/index.jsx";
+import RouteIndex from "./route/index";
 
 if(module.hot){
     module.hot.accept(() => {
         render(
             <AppContainer>
-                <Index />
+                <RouteIndex />
             </AppContainer>,
             document.getElementById("root")
         );
@@ -16,7 +16,7 @@ if(module.hot){
 
 render(
     <AppContainer>
-        <Index />
+        <RouteIndex />
     </AppContainer>,
     document.getElementById("root")
 );
